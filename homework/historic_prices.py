@@ -57,7 +57,7 @@ class HistoricPricer:
         return reduce(lambda x, y: x * (1 + y), returns, start_value)
 
     def forecast(self, ticker: str, num_of_scenarios: int = 1000, months: int = 240,
-                 *args, **kwargs) -> typing.Optional[typing.Dict]:
+                 *args, **kwargs) -> typing.Dict:
         """
         Returns projected prices using historical monthly changes.
         :param ticker: Ticker
