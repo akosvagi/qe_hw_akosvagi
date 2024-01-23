@@ -22,26 +22,6 @@ class HistoricPricer:
         return ticker.history(period=period)
 
     @staticmethod
-    def get_month_end_prices(
-            tickers: str,
-            start: typing.Optional[datetime.date] = None,
-            end: typing.Optional[datetime.date] = None, *args, **kwargs) -> pd.DataFrame:
-        """
-        Returns month-end closing prices for supplied ticker list.
-        :param tickers: List of tickers.
-        :type tickers: List.
-        :param start: Start date. Default is 1 year before.
-        :type start: datetime.date.
-        :param end: End date. Default is today.
-        :type end: datetime.date.
-        :type tickers: List.
-        :return: pd.DataFrame
-        """
-        end = end or datetime.date.today()
-        start = start or (end - datetime.timedelta(days=365))
-        return yf.download(tickers=tickers, start=start, end=end, group_by="ticker")
-
-    @staticmethod
     def get_scenario(returns: typing.Sequence[float], start_value: float, k: int = 240) -> float:
         """
         Returns a scenario list of projected prices based on available returns.
