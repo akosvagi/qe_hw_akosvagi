@@ -15,7 +15,6 @@ class HistoricPricerForecast(unittest.TestCase):
 
     def test_get_month_end_prices(self):
         result = self.pricer.forecast(self.valid_ticker)
-        print(result)
         self.assertGreaterEqual(result['max'], result['median'])
         self.assertGreaterEqual(result['median'], result['min'])
 
