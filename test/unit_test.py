@@ -25,3 +25,8 @@ class TestPricePredictions(unittest.TestCase):
         self.assertIsInstance(result, dict)
         self.assertTrue('error' in result)
 
+    def test_statistics_are_same_for_one_scenario(self):
+        """For a single scenario, all statistics should be the same."""
+        result = self.predictor.predict_prices(self.valid_ticker, num_of_scenarios=1)
+        self.assertEqual(result['max'], result['median'])
+        self.assertEqual(result['median'], result['min'])

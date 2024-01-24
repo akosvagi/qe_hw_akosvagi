@@ -1,7 +1,7 @@
 import json
 from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest
 from jsonschema.exceptions import ValidationError
-from ..predictors import PricePredictions
+from predictors import PricePredictions
 from .validation import PricePredictionsParametersValidator
 
 

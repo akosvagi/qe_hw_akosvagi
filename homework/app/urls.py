@@ -21,5 +21,5 @@ from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('api/historic-pricer/forecast', views.historic_pricer_forecast, name='api/historic-pricer/forecast'),
+    path('api/predict', views.historic_pricer_forecast, name='api/predict'),
 ]

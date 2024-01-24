@@ -53,8 +53,8 @@ class PricePredictions:
         final_prices = pd.Series([scenario[-1] for scenario in scenarios])
 
         return {
-            "max": final_prices.min(),
-            "min": final_prices.max(),
+            "max": final_prices.max(),
+            "min": final_prices.min(),
             "median": final_prices.median(),
         }
 

@@ -47,7 +47,8 @@ class TestHistoricPricerForecastEndpoint(TestCase):
         """Should return status 200 with an error message."""
         response = self._get_response(self.invalid_ticker_params)
         self.assertEqual(response.status_code, 200)
-        self.assertTrue('error' in response)
+        response_json = response.json()
+        self.assertTrue('error' in response_json)
 
     def _get_response(self, params: typing.Dict):
         suffix = '&'.join(f'{k}={v}' for k, v in params.items())
