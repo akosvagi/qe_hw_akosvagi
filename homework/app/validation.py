@@ -12,7 +12,7 @@ class Validator:
         validate(instance, self.schema)
 
 
-class HistoricPricerForecastParametersValidator(Validator):
+class PricePredictionsParametersValidator(Validator):
     """Parameter schema for GET request."""
 
     schema = {
@@ -36,7 +36,7 @@ class HistoricPricerForecastParametersValidator(Validator):
     }
 
 
-class HistoricPricerForecastResponseValidator(Validator):
+class PricePredicitionsResponseValidator(Validator):
     """Parameter schema for response to GET request."""
 
     schema = {

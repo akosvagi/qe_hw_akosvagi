@@ -1,27 +1,27 @@
 import unittest
 import random
-import pandas as pd
-from homework.historic_prices import HistoricPricer
+from homework.predictors import PricePredictions
 
 
-class HistoricPricerForecast(unittest.TestCase):
+class TestPricePredictions(unittest.TestCase):
 
     valid_ticker = 'AAPL'
-    invalid_ticker = 'sfsdfzs'
+    invalid_ticker = 'abcd1234!$%'
 
     def setUp(self):
         random.seed(10)
-        self.pricer = HistoricPricer()
+        self.predictor = PricePredictions()
 
     def test_get_month_end_prices(self):
-        result = self.pricer.forecast(self.valid_ticker)
+        """Valid tickers should return the statistics in a dict."""
+        result = self.predictor.predict_prices(self.valid_ticker)
+        self.assertIsInstance(result, dict)
         self.assertGreaterEqual(result['max'], result['median'])
         self.assertGreaterEqual(result['median'], result['min'])
 
     def test_invalid_ticker(self):
-        result = self.pricer.forecast(self.invalid_ticker)
+        """Invalid tickers should return a dict with an error."""
+        result = self.predictor.predict_prices(self.invalid_ticker)
+        self.assertIsInstance(result, dict)
         self.assertTrue('error' in result)
 
-    def test_get_historic_daily_prices(self):
-        result = self.pricer.get_historic_daily_prices(self.valid_ticker)
-        self.assertTrue(isinstance(result, pd.DataFrame))

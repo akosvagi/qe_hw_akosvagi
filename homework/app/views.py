@@ -1,8 +1,8 @@
 import json
 from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest
 from jsonschema.exceptions import ValidationError
-from historic_prices import HistoricPricer
-from .validation import HistoricPricerForecastParametersValidator
+from ..predictors import PricePredictions
+from .validation import PricePredictionsParametersValidator
 
 
 def historic_pricer_forecast(request) -> HttpResponse:
@@ -10,8 +10,8 @@ def historic_pricer_forecast(request) -> HttpResponse:
     params = dict(request.GET.items())
     params = {k: int(v) if v.isdigit() else v for k, v in params.items()}
     try:
-        HistoricPricerForecastParametersValidator(params)
+        PricePredictionsParametersValidator(params)
     except ValidationError as e:
         return HttpResponseBadRequest(f'Error while validating parameters: {e}')
 
-    return JsonResponse(HistoricPricer().forecast(**params))
+    return JsonResponse(PricePredictions().predict_prices(**params))

@@ -3,7 +3,7 @@ import typing
 from jsonschema.exceptions import ValidationError
 from django.test import TestCase
 from django.urls import reverse
-from .validation import HistoricPricerForecastResponseValidator
+from .validation import PricePredicitionsResponseValidator
 
 
 class TestHistoricPricerForecastEndpoint(TestCase):
@@ -24,7 +24,7 @@ class TestHistoricPricerForecastEndpoint(TestCase):
 
         response_json = response.json()
         try:
-            HistoricPricerForecastResponseValidator(response_json)
+            PricePredicitionsResponseValidator(response_json)
             response_valid = True
         except ValidationError:
             response_valid = False
@@ -44,6 +44,7 @@ class TestHistoricPricerForecastEndpoint(TestCase):
         self.assertEqual(response.status_code, 400)
 
     def test_invalid_ticker(self):
+        """Should return status 200 with an error message."""
         response = self._get_response(self.invalid_ticker_params)
         self.assertEqual(response.status_code, 200)
         self.assertTrue('error' in response)
