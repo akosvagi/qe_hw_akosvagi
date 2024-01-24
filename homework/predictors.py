@@ -1,7 +1,7 @@
 import typing
 import random
 import pandas as pd
-from homework.historic_prices import HistoricPricer
+from historic_prices import HistoricPricer
 
 
 class PricePredictions:
